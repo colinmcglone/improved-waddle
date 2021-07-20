@@ -29,6 +29,25 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+function makeId(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+         result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+    }
+    return result;
+}
+
+io.on('connection', (socket) => {
+    var currentRoom = makeId(7);
+    socket.join(currentRoom);
+  
+    io.to(currentRoom).emit('room', currentRoom);
+
+});
+
 http.listen(port, () => {
 console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
