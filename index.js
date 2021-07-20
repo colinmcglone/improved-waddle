@@ -1,3 +1,4 @@
+/*
 const MongoClient = require('mongodb').MongoClient;
 
 // Connect URL
@@ -19,6 +20,7 @@ MongoClient.connect(url, {
 });
 
 const expenses = db.collection('expenses');
+*/
 
 const app = require('express')();
 const http = require('http').createServer(app);
