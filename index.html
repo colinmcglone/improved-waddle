@@ -17,6 +17,8 @@
                 var roomName = document.createElement('h1');
                 roomName.textContent = room;
                 document.body.prepend(roomName);
+                window.history.pushState({"html":"http://138.197.141.217/"+room,"pageTitle":"Expens"},"", urlPath);
+
             });
 
         </script>
