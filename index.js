@@ -14,11 +14,11 @@ MongoClient.connect(url, {
 
     // Specify database you want to access
     const db = client.db('expens');
+    const expenses = db.collection('expenses');
 
     console.log(`MongoDB Connected: ${url}`);
 });
 
-const expenses = db.collection('expenses');
 
 const app = require('express')();
 const http = require('http').createServer(app);
@@ -27,9 +27,6 @@ const port = 3000;
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
-});
-  
-io.on('connection', (socket) => {
 });
 
 http.listen(port, () => {
