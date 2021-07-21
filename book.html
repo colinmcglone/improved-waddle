@@ -9,6 +9,74 @@
     <body>
         <h1 id='bookName'></h1>
 
+        <div>
+            <p>Add new expense</p>
+            <form id="newExpense">
+                <label for="amount">Amount:</label>
+                <input name="amount" id="expenseAmount" />
+                <label for="vendor">Vendor:</label>
+                <input name="vendor" id="expenseVendor" />
+                <label for="purchaser">Purchaser:</label>
+                <input name="purchaser" id="expensePurchaser" />
+                <label for="date">Date:</label>
+                <input name="date" id="expenseDate" />
+                <label for="description">Description:</label>
+                <input name="description" id="expenseDescription" />
+                <p>Add Participants:</p>
+                <label for="jane">Jane</label>
+                <input type="checkbox" id="jane" name="jane">
+                <label for="bob">Bob</label>
+                <input type="checkbox" id="bob" name="bob">
+                <label for="john">John</label>
+                <input type="checkbox" id="john" name="john">
+                <label for="alice">Alice</label>
+                <input type="checkbox" id="alice" name="alice">
+                <button>Add</button>
+            </form>
+        </div>
+        <div>
+            <h3>Book Overview</h3>
+            <div>
+                <h4>Participant Balances</h4>
+                <table id="participantBalances">
+                    <thead>
+                        <tr>
+                            <th scope="col">Participant</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <form id="addParticipant">
+                    <label for="participant">Name: </label>
+                    <input name="participant" id="newParticipant" />
+                    <button>Add</button>
+                </form>
+            </div>
+            <div>
+                <h4>Top Vendors</h4>
+                <ul id="topVendors">
+
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h3>Expenses</h3>
+            <table id="expenseHistory">
+                <thead>
+                    <tr>
+                        <th scope="col">Vendor</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Purchaser</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
