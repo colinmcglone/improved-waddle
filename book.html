@@ -7,28 +7,25 @@
         </style>
     </head>
     <body>
-        Hello.
+        <h1 id='bookName'></h1>
 
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
 
-            socket.on('connected', function() {
-                // get path from current URL
-                let book = window.location.pathname.slice(6);   // remove leading /book/
-                let pos = book.indexOf('/');
-                if (pos !== -1) {
-                    book = book.slice(0, pos);
-                }
-                socket.emit("open book", book);
-                console.log("retreiving book info for: " + book);
-            });
+            // get path from current URL
+            let book = window.location.pathname.slice(6);   // remove leading /book/
+            let pos = book.indexOf('/');
+            if (pos !== -1) {
+                book = book.slice(0, pos);
+            }
+            socket.emit("open book", book);
+            console.log("retreiving book info for: " + book);
 
             socket.on('book', function(book) {
                 console.log("Book ID: " + book);
-                var bookName = document.createElement('h1');
+                var bookName = document.getElementById('bookName');
                 bookName.textContent = book;
-                document.body.prepend(bookName);
             });
         </script>
     </body>
