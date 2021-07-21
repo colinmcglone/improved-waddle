@@ -21,9 +21,11 @@
                     book = book.slice(0, pos);
                 }
                 socket.emit("open book", book);
+                console.log("retreiving book info for: " + book);
             });
 
             socket.on('book', function(book) {
+                console.log("Book ID: " + book);
                 var bookName = document.createElement('h1');
                 bookName.textContent = book;
                 document.body.prepend(bookName);
