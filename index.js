@@ -29,6 +29,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/book/:bookId', (req, res) => {
+    res.sendFile(__dirname + '/book.html');
+});
+
 function makeId(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -41,11 +45,16 @@ function makeId(length) {
 }
 
 io.on('connection', (socket) => {
-    var currentRoom = makeId(7);
-    socket.join(currentRoom);
-  
-    io.to(currentRoom).emit('room', currentRoom);
+    socket.on('new book', function() {
+        var bookId = makeId(7);
+        socket.emit('goto book', bookId);
+    });
 
+    socket.on('open book', book => {
+        socket.join(book);
+        socket.emit('book', book);
+        //get book info from database, or create new book
+    });
 });
 
 http.listen(port, () => {

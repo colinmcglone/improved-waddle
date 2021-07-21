@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expens</title>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        Hello.
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+
+            socket.on('connected', function() {
+                // get path from current URL
+                let book = window.location.pathname.slice(6);   // remove leading /book/
+                let pos = book.indexOf('/');
+                if (pos !== -1) {
+                    book = book.slice(0, pos);
+                }
+                socket.emit("open book", book);
+            });
+
+            socket.on('book', function(book) {
+                var bookName = document.createElement('h1');
+                bookName.textContent = book;
+                document.body.prepend(bookName);
+            });
+        </script>
+    </body>
+</html>

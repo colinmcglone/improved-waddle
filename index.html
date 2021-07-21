@@ -9,17 +9,21 @@
     <body>
         Hello.
 
+        <button id='create'>Create Book</button>
+
+
         <script src="/socket.io/socket.io.js"></script>
+        
         <script>
             var socket = io();
 
-            socket.on('room', function(room) {
-                var roomName = document.createElement('h1');
-                roomName.textContent = room;
-                document.body.prepend(roomName);
-                window.history.pushState({"html":document.body.innerHTML,"pageTitle":"Expens"},"", "http://138.197.141.217/"+room);
+            document.getElementById("create").onclick = function() {
+                socket.emit("new book");
+            }
 
-            });
+            socket.on('goto book', bookId => {
+                window.location.href = "http://138.197.141.217/" + bookId;
+            }
 
         </script>
     </body>
